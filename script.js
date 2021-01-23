@@ -2,6 +2,11 @@
 const endpoint = "https://jsonbox.io/box_d19452d79b225319086b";
 const recordId = "600b6b3b92d72b0015b0b3e2";
 
+const ATTACK = "attack";
+const DEFEND = "defend";
+const FEINT = "defend";
+const MANEUVER = "maneuver";
+
 fetch(`${endpoint}/${recordId}`).then( function(response) {
 
     if(response.status = "200") {
@@ -14,16 +19,16 @@ fetch(`${endpoint}/${recordId}`).then( function(response) {
 
 function drawCards(data){
    const action = data.action[0].action;
-   if(action == "attack") {
+   if(action == ATTACK) {
      document.querySelector("card1").classList.add("attackCard");
    }
-   if(action == "defend") {
+   if(action == DEFEND) {
     document.querySelector("card1").classList.add("defendCard");
    }
-   if(action == "maneuver") {
+   if(action == FEINT) {
     document.querySelector("card1").classList.add("maneuverCard");
    }
-   if(action == "feint") {
+   if(action == MANEUVER) {
     document.querySelector("card1").classList.add("feintCard");
    }
 }

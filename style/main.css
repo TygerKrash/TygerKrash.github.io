@@ -2,26 +2,31 @@
     width: 100vw;
     height: 100vh;
 }
+
+body {
+    margin: 0px;
+}
+
 #card1 {
     position: absolute;
-    top: 21vh;
-    left: 15.3vw;
+    top: 20.3vh;
+    left: 14.5vw;
     width: 8.5vw;
     height: 20.4vh;
     border: 1px solid blue;
 }
 #card2 {
     position: absolute;
-    top: 21vh;
-    left: 30.3vw;
+    top: 20.3vh;
+    left: 29.3vw;
     width: 8.5vw;
     height: 20.4vh;
     border: 1px solid blue;
 }
 #card3 {
     position: absolute;
-    top: 21vh;
-    left: 45vw;
+    top: 20.3vh;
+    left: 44vw;
     width: 8.5vw;
     height: 20.4vh;
     border: 1px solid blue;
