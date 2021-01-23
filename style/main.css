@@ -3,9 +3,28 @@
     height: 100vh;
 }
 #card1 {
-    position: relative;
-    top: 15vh;
-    left: 10vw;
+    position: absolute;
+    top: 21vh;
+    left: 15.3vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
+}
+#card2 {
+    position: absolute;
+    top: 21vh;
+    left: 20.3vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
+}
+#card3 {
+    position: absolute;
+    top: 40vh;
+    left: 60.3vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
 }
 
 .attackCard {

@@ -13,7 +13,7 @@ fetch(`${endpoint}/${recordId}`).then( function(response) {
 
 
 function drawCards(data){
-   data.action[0].action;
+   const action = data.action[0].action;
    if(action == "attack") {
      document.querySelector("card1").classList.add("attackCard");
    }
