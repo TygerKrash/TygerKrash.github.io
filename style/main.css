@@ -32,6 +32,34 @@ body {
     border: 1px solid blue;
 }
 
+#card4 {
+    position: absolute;
+    top: 42.7vh;
+    left: 14.5vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
+}
+#card5 {
+    position: absolute;
+    top: 42.7vh;
+    left: 29.3vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
+}
+#card6 {
+    position: absolute;
+    top: 42.7vh;
+    left: 44vw;
+    width: 8.5vw;
+    height: 20.4vh;
+    border: 1px solid blue;
+}
+
+
+
+
 .attackCard {
     background-image: url(/assets/attack.png) ;
 }
