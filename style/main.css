@@ -2,3 +2,24 @@
     width: 100vw;
     height: 100vh;
 }
+#card1 {
+    position: relative;
+    top: 15vh;
+    left: 10vw;
+}
+
+.attackCard {
+    background-image: url(/assets/attack.png) ;
+}
+
+.defendCard {
+    background-image: url(/assets/defend.png);
+}
+
+.feintCard {
+    background-image: url(/assets/feint.png);
+}
+
+.maneouverCard {
+    background-image: url(/assets/maneuver.png);
+}
