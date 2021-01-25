@@ -58,20 +58,130 @@ body {
 }
 
 
-
+.backCard {
+    background-image: url(/assets/backCard.png) ;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
 
 .attackCard {
     background-image: url(/assets/attack.png) ;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .defendCard {
     background-image: url(/assets/defend.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .feintCard {
     background-image: url(/assets/feint.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .maneouverCard {
     background-image: url(/assets/maneuver.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.unselectedCard {
+    background-image: none;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.loader {
+    background-image: url(/assets/loader.gif);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    top: -97vh;
+    left: 4vh;
+    height: 100px;
+    width: 90px;
+}
+
+.active {
+    display: block;
+}
+
+.menuContainer {
+   position: absolute;
+   top: 0;
+   left:0;
+   width: fit-content;
+   height: fit-content;
+}
+
+.burgerMenu {
+    background-image: url(/assets/Hamburger.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+
+.spacing {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sideMenu {
+    background-color: rgba(255,255, 255, 0.5);
+    display: inline-block;
+    position: relative;
+    top: -1vh;
+    padding-top: 20px;
+    height: 100vh;
+}
+
+.selectionPanel {
+    position: absolute;
+    margin: auto;
+    top: 30vh;
+    width: 100%;
+    height: 50%;
+}
+
+.selectionPanel  .spacing {
+    width: 20%;
+    height: 100%;
+    display: inline-block
+}
+
+#row1 {
+    position: absolute;
+    top: 65vh;
+    left: 15vw;
+}
+#row2 {
+    position: absolute;
+    top: 65vh;
+    left: 30vw;
+}
+#row3 {
+    position: absolute;
+    top: 65vh;
+    left: 45vw;
+}
+
+
+.fuzzy{
+    background-blend-mode: multiply;
+    background-color: darkgray;
+}
+
+.modal {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 40vh;
+    left: 40vw;
+    background: wheat;
+    padding: 20px;
 }

@@ -4,11 +4,37 @@
     <script type="text/javascript" src="script.js"></script>
     <body>
         <img class="background" src="assets/MouseGuardConflict.jpg"/>
-        <div id="card1"></div>
-        <div id="card2"></div>
-        <div id="card3"></div>
-        <div id="card4"></div>
-        <div id="card5"></div>
-        <div id="card6"></div>
+        <div class="loader"></div>
+        <div id="card1" onclick="selectCard(1)"></div>
+        <div id="card2" onclick="selectCard(2)"></div>></div>
+        <div id="card3" onclick="selectCard(3)"></div>></div>
+        <div id="card4" onclick="selectCard(4)"></div>></div>
+        <div id="card5" onclick="selectCard(5)"></div>></div>
+        <div id="card6" onclick="selectCard(6)"></div>></div>
+
+        <div class="revealButtons">
+            <button id="row1" onclick="reveal(1)">Reveal</button>
+            <button id="row2" onclick="reveal(2)">Reveal</button>
+            <button type="button" id="row3" onclick="reveal(3)">Reveal</button>
+        </div>
+        <div class="menuContainer" >
+            <div class="sideMenu" style="display: none;">
+                <button onclick="clearActions()">Clear</button>
+                <button onclick="generateLink()">Share</button>
+            </div>
+            <div class="burgerMenu" onclick="toggleSideMenu()"></div>
+        </div>
+
+        <div class="Modal" style="display: none;" >
+            <div class="modalContent"></div>
+            <div class="close" onclick="dismissModal()">X</div>
+        </div>
+
+        <div class="selectionPanel" style="display: none;"> 
+            <div class="attackCard spacing" onclick="cardSelected('attack')"></div>
+            <div class="defendCard spacing" onclick="cardSelected('defend')"></div>
+            <div class="feintCard spacing" onclick="cardSelected('feint')"></div>
+            <div class="maneuverCard spacing" onclick="cardSelected('maneuver')"></div>
+        </div>
     </body>
 </html>
