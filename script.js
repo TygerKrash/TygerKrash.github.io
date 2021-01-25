@@ -40,11 +40,12 @@ window.onload = () => {
             });
         } else {
             gameState = JSON.parse(storedGame);
+            gameState.initialLoadComplete =true;
         }
     } else if(!isDM) {
         document.querySelector(".burgerMenu").style.display='none';
         document.querySelector(".revealButtons").style.display='none';
-        getLatest().then( () => gameState.initialLoadComplete = true );
+        getLatest().then( () => { gameState.initialLoadComplete = true;} );
     }
 };
 
