@@ -10,6 +10,7 @@ const MANEUVER = "maneuver";
 const BACK = "back";
 let gameState = {
     selectedCard:0,
+    isSelecting: false;
     isDM :isDM,
     sessionId: isDM ? null: sessionParam,
     slots : [
@@ -21,9 +22,12 @@ let gameState = {
         {  visible: false, selected : "" }]
 };
 
+
 setInterval( () => {
-    toggleLoader();
-    getLatest();
+    if(!gameState.isSelecting) {
+        toggleLoader();
+        getLatest();
+    }
 },7000);
 
 window.onload = () => {
@@ -75,8 +79,11 @@ function toggleLoader() {
 
 function updateStateFromFetch(data) {
     data.record.action.forEach( (item, index) => {
-        gameState.slots[index].selected = item.action;
-        gameState.slots[index].visible = item.visible;
+        let shouldUpdate = (isDM && index >2) || (!isDM && index <3) 
+        if(shouldUpdate){ 
+            gameState.slots[index].selected = item.action;
+            gameState.slots[index].visible = item.visible;
+        }
     });
 }
 
@@ -85,6 +92,7 @@ function getLatest() {
         fetch(`${endpoint}${gameState.sessionId}/latest`).then( function(response) {
             if(response.status = "200") {
                 response.json().then( (data)=> { 
+
                         updateStateFromFetch(data);
                         drawCards(); 
                         toggleLoader();
@@ -140,6 +148,7 @@ function selectCard(index) {
     if(!isDM && index > 3) {
         return;
     }
+    gameState.isSelecting =true;
     gameState.selectedCard = index-1;
     document.querySelector(".selectionPanel").style.display="inline-block";
 }
@@ -149,6 +158,7 @@ function cardSelected(action) {
     document.querySelector(".selectionPanel").style.display="none";
     drawCards();
     sendData();
+    gameState.isSelecting = false;
 }
 
 function reveal(row) {
