@@ -10,7 +10,7 @@ const MANEUVER = "maneuver";
 const BACK = "back";
 let gameState = {
     selectedCard:0,
-    isSelecting: false;
+    isSelecting: false,
     isDM :isDM,
     sessionId: isDM ? null: sessionParam,
     slots : [
@@ -24,7 +24,7 @@ let gameState = {
 
 
 setInterval( () => {
-    if(!gameState.isSelecting) {
+    if(!gameState.isSelecting && gameState.initialLoadComplete) {
         toggleLoader();
         getLatest();
     }
@@ -36,6 +36,7 @@ window.onload = () => {
         if (storedGame == null) {
             sendData().then( () => {
                 localStorage.setItem("mouseGuardConflict",JSON.stringify(gameState));
+                gameState.initialLoadComplete =true;
             });
         } else {
             gameState = JSON.parse(storedGame);
@@ -43,7 +44,7 @@ window.onload = () => {
     } else if(!isDM) {
         document.querySelector(".burgerMenu").style.display='none';
         document.querySelector(".revealButtons").style.display='none';
-        getLatest();
+        getLatest().then( () => gameState.initialLoadComplete = true );
     }
 };
 
@@ -89,9 +90,9 @@ function updateStateFromFetch(data) {
 
 function getLatest() {
     if( gameState.sessionId) {
-        fetch(`${endpoint}${gameState.sessionId}/latest`).then( function(response) {
+        return fetch(`${endpoint}${gameState.sessionId}/latest`).then( function(response) {
             if(response.status = "200") {
-                response.json().then( (data)=> { 
+                return response.json().then( (data)=> { 
 
                         updateStateFromFetch(data);
                         drawCards(); 
