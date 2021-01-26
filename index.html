@@ -6,11 +6,11 @@
         <img class="background" src="assets/MouseGuardConflict.jpg"/>
         <div class="loader"></div>
         <div id="card1" onclick="selectCard(1)"></div>
-        <div id="card2" onclick="selectCard(2)"></div>></div>
-        <div id="card3" onclick="selectCard(3)"></div>></div>
-        <div id="card4" onclick="selectCard(4)"></div>></div>
-        <div id="card5" onclick="selectCard(5)"></div>></div>
-        <div id="card6" onclick="selectCard(6)"></div>></div>
+        <div id="card2" onclick="selectCard(2)"></div>>
+        <div id="card3" onclick="selectCard(3)"></div>>
+        <div id="card4" onclick="selectCard(4)"></div>>
+        <div id="card5" onclick="selectCard(5)"></div>>
+        <div id="card6" onclick="selectCard(6)"></div>>
 
         <div class="revealButtons">
             <button id="row1" onclick="reveal(1)">Reveal</button>
@@ -20,14 +20,14 @@
         <div class="menuContainer" >
             <div class="sideMenu" style="display: none;">
                 <button onclick="clearActions()">Clear</button>
-                <button onclick="generateLink()">Share</button>
+                <button onclick="showModal(`Share link:  ${window.location.origin}?sessionId=${gameState.sessionId}`)">Share</button>
             </div>
             <div class="burgerMenu" onclick="toggleSideMenu()"></div>
         </div>
 
         <div class="Modal" style="display: none;" >
             <div class="modalContent"></div>
-            <div class="close" onclick="dismissModal()">X</div>
+            <button class="close" onclick="dismissModal()">X</div>
         </div>
 
         <div class="selectionPanel" style="display: none;"> 

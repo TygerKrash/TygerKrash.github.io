@@ -1,7 +1,8 @@
-
+"use strict"
 const endpoint = "https://api.jsonbin.io/v3/b/";
 const urlParams = new URLSearchParams(window.location.search);
 const sessionParam = urlParams.get("sessionId");
+const apiKey = urlParams.get('apikey');
 const isDM = sessionParam  == null;
 const ATTACK = "attack";
 const DEFEND = "defend";
@@ -24,6 +25,8 @@ let gameState = {
 };
 
 
+
+
 setInterval( () => {
     if(!gameState.isSelecting && gameState.initialLoadComplete) {
         setLoader(true);
@@ -32,6 +35,10 @@ setInterval( () => {
 },7000);
 
 window.onload = () => {
+    if(sessionParam == null &&  apiKey == null) {
+        showModal(`Hi, You'll need an jsonbin.io apikey to use the app as GM. load the site using  ${window.location.origin}?apiKey=JSONBINAPIKEY once you have one.`)
+        return;
+    }
     storedGame = localStorage.getItem(LOCALSTORAGEKEY,gameState);
     if (isDM) {
         if (storedGame == null) {
@@ -53,11 +60,11 @@ window.onload = () => {
 };
 
 
-function generateLink() {
+function showModal(content) {
     let modal =  document.querySelector(".Modal");
     let modalContent=  document.querySelector(".modalContent");
     modal.style.display = "block";
-    modalContent.textContent = `Share link:  ${window.location.origin}?sessionId=${gameState.sessionId}`;
+    modalContent.textContent = content;
 
 }
 
@@ -179,7 +186,7 @@ function sendData() {
         'X-Bin-Private': 'false'
     };
     if(!gameState.sessionId) { 
-        headers['X-Master-Key']= urlParams.get('apikey');
+        headers['X-Master-Key']= apiKey;
     }
 
    
