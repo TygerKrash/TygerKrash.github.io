@@ -25,8 +25,8 @@ let gameState = {
 
 setInterval( () => {
     if(!gameState.isSelecting && gameState.initialLoadComplete) {
-        toggleLoader();
-        getLatest();
+        setLoader(true);
+        getLatest().then(()=>  setLoader(false));
     }
 },7000);
 
@@ -34,9 +34,11 @@ window.onload = () => {
     storedGame = localStorage.getItem("mouseGuardConflict",gameState);
     if (isDM) {
         if (storedGame == null) {
+            setLoader(true);
             sendData().then( () => {
                 localStorage.setItem("mouseGuardConflict",JSON.stringify(gameState));
                 gameState.initialLoadComplete =true;
+                setLoader(false);
             });
         } else {
             gameState = JSON.parse(storedGame);
@@ -70,13 +72,12 @@ function mapStateToJson() {
     }
 }
 
-function toggleLoader() {
-    if(document.querySelector(".loader").style.display == "none")
-     {
+function setLoader(on) {
+    if(on) { 
         document.querySelector(".loader").style.display = "inline-block";
-     }else{
+    }else {
         document.querySelector(".loader").style.display = "none";
-     }
+    }
 }
 
 function updateStateFromFetch(data) {
@@ -93,11 +94,9 @@ function getLatest() {
     if( gameState.sessionId) {
         return fetch(`${endpoint}${gameState.sessionId}/latest`).then( function(response) {
             if(response.status = "200") {
-                return response.json().then( (data)=> { 
-
+                return response.json().then( (data)=> {
                         updateStateFromFetch(data);
                         drawCards(); 
-                        toggleLoader();
                 });
             } else {
                 console.log(response);
@@ -171,7 +170,6 @@ function reveal(row) {
 }
 
 function sendData() {
-    toggleLoader();
 
     headers = {
         'Accept': 'application/json',
@@ -192,7 +190,7 @@ function sendData() {
 
         if(response.status = "200") {
             return response.json().then( (data)=> { 
-                    toggleLoader();
+                
                     gameState.sessionId = data.metadata.id ?? data.metadata.parentId;
                     drawCards(data); 
                     document.querySelector(".loader").style.display = "none";
