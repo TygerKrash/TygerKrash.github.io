@@ -8,6 +8,7 @@ const DEFEND = "defend";
 const FEINT = "defend";
 const MANEUVER = "maneuver";
 const BACK = "back";
+const LOCALSTORAGEKEY ="mouseGuardConflict";
 let gameState = {
     selectedCard:0,
     isSelecting: false,
@@ -31,18 +32,18 @@ setInterval( () => {
 },7000);
 
 window.onload = () => {
-    storedGame = localStorage.getItem("mouseGuardConflict",gameState);
+    storedGame = localStorage.getItem(LOCALSTORAGEKEY,gameState);
     if (isDM) {
         if (storedGame == null) {
             setLoader(true);
             sendData().then( () => {
-                localStorage.setItem("mouseGuardConflict",JSON.stringify(gameState));
                 gameState.initialLoadComplete =true;
                 setLoader(false);
             });
         } else {
             gameState = JSON.parse(storedGame);
             gameState.initialLoadComplete =true;
+            drawCards();
         }
     } else if(!isDM) {
         document.querySelector(".burgerMenu").style.display='none';
@@ -96,6 +97,7 @@ function getLatest() {
             if(response.status = "200") {
                 return response.json().then( (data)=> {
                         updateStateFromFetch(data);
+                        localStorage.setItem(LOCALSTORAGEKEY,JSON.stringify(gameState));
                         drawCards(); 
                 });
             } else {
@@ -192,6 +194,7 @@ function sendData() {
             return response.json().then( (data)=> { 
                 
                     gameState.sessionId = data.metadata.id ?? data.metadata.parentId;
+                    localStorage.setItem(LOCALSTORAGEKEY,JSON.stringify(gameState));
                     drawCards(data); 
                     document.querySelector(".loader").style.display = "none";
             });
