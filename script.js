@@ -83,7 +83,7 @@ function setLoader(on) {
 
 function updateStateFromFetch(data) {
     data.record.action.forEach( (item, index) => {
-        let shouldUpdate = (isDM && index >2) || (!isDM && index <3) 
+        let shouldUpdate = (isDM && index <3) || (!isDM) 
         if(shouldUpdate){ 
             gameState.slots[index].selected = item.action;
             gameState.slots[index].visible = item.visible;
@@ -143,7 +143,7 @@ function toggleSideMenu() {
 }
 
 function clearActions() {
-    gameState.slots.forEach(e => e.selected ="");
+    gameState.slots.forEach(e => { e.selected =""; e.visible =false;});
     sendData();
 }
 
