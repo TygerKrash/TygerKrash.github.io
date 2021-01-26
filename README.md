@@ -17,13 +17,15 @@ the top 3 are the player team cards and bottom three are the
 GM team cards.
 
 You can click on the GM cards and select an action from the cards presented. 
-Cards selected are stored but the player user cannot  see their value until you click the reveal action
-under the column. 
+Cards selected are stored but the player user cannot  see their value until you click the _reveal_ action
+under the column, doing so also reveals the player selections for that round to you.
 
 On the top left, there's a 'hamburger' menu icon. the _Share_ and _Clear_ options are there.
 
 _share_ creates a link that you can share with your players so they can see the game state and make selections.
 _clear_ wipes all cards in preparation for a new round.
+
+the _reveal_, _share_ and _clear_ options are not available to non GM players.
 
 
 
