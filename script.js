@@ -51,7 +51,7 @@ setInterval( () => {
 window.onload = () => {
 
     if(sessionParam == null &&  apiKey == null) {
-        showModal(`Hi, You'll need an jsonbin.io apikey to use the app as GM. load the site using  ${window.location.origin}?apiKey=JSONBINAPIKEY once you have one.`)
+        showModal(`Hi, You'll need an jsonbin.io apikey to use the app as GM. load the site using  ${window.location.origin}?apiKey=JSONBINAPIKEY once you have one.`);
         return;
     }
     let  storedGame = localStorage.getItem(LOCALSTORAGEKEY,gameState);
@@ -71,6 +71,7 @@ function gmOnLoad(storedGame) {
             gameState.initialLoadComplete =true;
             setLoader(false);
         });
+        showModal(`welcome, you can select GM team cards (bottom row). In the top left there's a menu that has GM features , the session sharing link or players and clearing ALL cards selected `)
     } else {
         gameState = JSON.parse(storedGame);
         
@@ -226,9 +227,10 @@ function clearActions() {
 }
 
 function selectCard(index) {
-    if(!isDM && index > 3) {
+    if( (!isDM && index > 3 ) || isDM && index < 4) {
         return;
     }
+
     gameState.isSelecting =true;
     gameState.selectedCard = index-1;
     document.querySelector(".selectionPanel").style.display="inline-block";
