@@ -25,6 +25,7 @@ let gameState = {
     isSelecting: false,
     isDM :isDM,
     sessionId: isDM ? null: sessionParam,
+    conflictCaptain: undefined,
     slots : [
         {  visible: false, selected : "" },
         {  visible: false, selected : "" },
@@ -77,6 +78,7 @@ function gmOnLoad(storedGame) {
         
         gameState.initialLoadComplete =true;
         renderCards();
+        renderPlayers();
     }
 }
 
@@ -120,7 +122,7 @@ function showModal(content) {
 
 function mapStateToJson() {
     return {
-        conflictLeader: "",
+        conflictCaptain: gameState.conflictCaptain,
         action: gameState.slots.map( e => { 
             return {
                 visible: e.visible,
@@ -147,6 +149,7 @@ function updateStateFromFetch(data) {
             gameState.slots[index].visible = item.visible;
         }
     });
+    gameState.conflictCaptain = data.record.conflictCaptain;
     gameState.players = data.record.players ?? [];
     if(gameState.localMouse && !gameState.players.includes(gameState.localMouse)) {
         gameState.players.push(gameState.localMouse);
@@ -201,6 +204,14 @@ function toggleSideMenu() {
     document.querySelector(".burgerMenu").classList.toggle("cancelIcon");
 }
 
+function playerClick(playerIndex) {
+    if(isDM) {
+     showModal(`${gameState.players[playerIndex]} set as conflict captain `);
+     gameState.conflictCaptain = gameState.players[playerIndex];
+     sendData();
+    }
+}
+
 function renderPlayers() {
     let players = document.querySelector(".players");
     while (players.firstChild) {
@@ -211,15 +222,18 @@ function renderPlayers() {
 
         let container = document.createElement("div"); 
         players.appendChild(container);
+        container.addEventListener('click', function(e) { playerClick(i);},true);
         let element = document.createElement("span");
         element.setAttribute("style", `background-color : ${playerColors[i]}`);
         container.appendChild(element );
         let label = document.createElement("label");
-        label.textContent = e;
+        label.textContent = `${e} ${e == gameState.conflictCaptain ? '(C)' : ''}`;
         label.setAttribute("style", `color : ${playerColors[i]}`);
         container.appendChild(label );
     });
 }
+
+
 
 function clearActions() {
     gameState.slots.forEach(e => { e.selected =""; e.visible =false;});
@@ -227,7 +241,7 @@ function clearActions() {
 }
 
 function selectCard(index) {
-    if( (!isDM && index > 3 ) || isDM && index < 4) {
+    if( (!isDM && index > 3 ) || isDM && index < 4 || (!isDM && gameState.conflictCaptain != gameState.localMouse) ) {
         return;
     }
 
