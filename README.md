@@ -35,11 +35,3 @@ provided by [Jsonbin.io] , access to Jsonbin.io requires an api key and there is
 into this app, anyone can sign up for an account though and you can provide your own apikey in the url as 
 indicated in the 'how to use it' section.
 
-## TODO
-- Provide indication of user 'logged in'
-- GM assign conflict captain
-- allow conflict captain assign other player users to rounds.
-- provide game prompts as each action resolves, perhaps capture conflict types and offer appropriate modifiers.
-- move to a subscription model for updates
-- possibly support multiple teams.
-- increase 'secrecy' - card actions are sent in plaintext right now, just hidden in the UI until reveal is clicked.
