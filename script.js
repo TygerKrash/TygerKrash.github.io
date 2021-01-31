@@ -64,7 +64,7 @@ window.onload = () => {
 
 
 function gmOnLoad(storedGame) {
-    gameState.localMouse ='DM';
+    gameState.localMouse ='GM';
     if (storedGame == null) {
         setLoader(true);
         sendData().then( () => {
