@@ -1,34 +1,55 @@
 <html>
     <title>Mouse Guard Conflicts</title>
     <link rel="stylesheet" href="./style/main.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
     <script type="text/javascript" src="script.js"></script>
     <body>
         <img class="background" src="assets/MouseGuardConflict.jpg"/>
+        <div class="players"></div>
         <div class="loader"></div>
         <div id="card1" onclick="selectCard(1)"></div>
-        <div id="card2" onclick="selectCard(2)"></div>>
-        <div id="card3" onclick="selectCard(3)"></div>>
-        <div id="card4" onclick="selectCard(4)"></div>>
-        <div id="card5" onclick="selectCard(5)"></div>>
-        <div id="card6" onclick="selectCard(6)"></div>>
+        <div id="card2" onclick="selectCard(2)"></div>
+        <div id="card3" onclick="selectCard(3)"></div>
+        <div id="card4" onclick="selectCard(4)"></div>
+        <div id="card5" onclick="selectCard(5)"></div>
+        <div id="card6" onclick="selectCard(6)"></div>
 
+        <dialog id="mouseCapture">
+            <p>Greetings, one and all!</p>
+            <form method="dialog">
+                <p>
+                   <label for="mouseName">Your Mouse's name?</label> 
+                   <input id="mouseName" type="text" ></input>
+                </p>
+                <menu>
+                  <button id="confirmBtn" value="default">Confirm</button>
+                </menu>
+              </form>
+        </dialog>
         <div class="revealButtons">
-            <button id="row1" onclick="reveal(1)">Reveal</button>
-            <button id="row2" onclick="reveal(2)">Reveal</button>
-            <button type="button" id="row3" onclick="reveal(3)">Reveal</button>
+            <button type="button" id="col1Reveal" onclick="reveal(1)">Reveal</button>
+            <button type="button" id="col2Reveal" onclick="reveal(2)">Reveal</button>
+            <button type="button" id="col3Reveal" onclick="reveal(3)">Reveal</button>
+        </div>
+        <div class="resolveButtons">
+            <button type="button" id="col1Resolve" onclick="resolve(1)">Resolve</button>
+            <button type="button" id="col2Resolve" onclick="resolve(2)">Resolve</button>
+            <button type="button" id="col3Resolve" onclick="resolve(3)">Resolve</button>
         </div>
         <div class="menuContainer" >
-            <div class="sideMenu" style="display: none;">
+            <div class="sideMenu">
                 <button onclick="clearActions()">Clear</button>
                 <button onclick="showModal(`Share link:  ${window.location.origin}?sessionId=${gameState.sessionId}`)">Share</button>
             </div>
             <div class="burgerMenu" onclick="toggleSideMenu()"></div>
         </div>
 
-        <div class="Modal" style="display: none;" >
+        <dialog id="modalMessage">
             <div class="modalContent"></div>
-            <button class="close" onclick="dismissModal()">X</div>
-        </div>
+            <button class="close" onclick='document.querySelector("#modalMessage").close()'>Close</button>
+        </dialog>
+ 
 
         <div class="selectionPanel" style="display: none;"> 
             <div class="attackCard spacing" onclick="cardSelected('attack')"></div>

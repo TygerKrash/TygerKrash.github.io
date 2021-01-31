@@ -7,6 +7,11 @@ body {
     margin: 0px;
 }
 
+button {
+    min-width: 44px;
+    min-height: 40px;;
+}
+
 #card1 {
     position: absolute;
     top: 20.3vh;
@@ -125,6 +130,15 @@ body {
     display: inline-block;
     height: 30px;
     width: 30px;
+    transform: translateX(0%);
+    transition: transform 0.2s ease;
+    top: 0;
+    position: absolute;
+}
+
+.cancelIcon { 
+    background-image: url(/assets/nounCancel.svg);
+    transform: translateX(5vw);
 }
 
 .spacing {
@@ -134,11 +148,18 @@ body {
 
 .sideMenu {
     background-color: rgba(255,255, 255, 0.5);
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     top: -1vh;
     padding-top: 20px;
     height: 100vh;
+    transition: transform 0.2s ease;
+    transform: translateX(-100%);
+}
+
+.showNav {
+    transform: translateX(0);
 }
 
 .selectionPanel {
@@ -155,19 +176,35 @@ body {
     display: inline-block
 }
 
-#row1 {
+#col1reveal {
     position: absolute;
     top: 65vh;
     left: 15vw;
 }
-#row2 {
+#col2reveal {
     position: absolute;
     top: 65vh;
     left: 30vw;
 }
-#row3 {
+#col3reveal {
     position: absolute;
     top: 65vh;
+    left: 45vw;
+}
+
+#col1resolve {
+    position: absolute;
+    top: 70vh;
+    left: 15vw;
+}
+#col2resolve {
+    position: absolute;
+    top: 70vh;
+    left: 30vw;
+}
+#col3resolve {
+    position: absolute;
+    top: 70vh;
     left: 45vw;
 }
 
@@ -177,12 +214,33 @@ body {
     background-color: darkgray;
 }
 
-.modal {
-    position: absolute;
-    width: 100%;
-    height: fit-content;
+#modalMessage {
     text-align: center;
-    top: 40vh;
     background: wheat;
-    padding: 20px;
+
+}
+
+.players {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width:50%;
+    font-size: 20px;
+    display: flex;
+    justify-content: left;
+    font-family: 'Potta One', cursive;
+   
+}
+
+.players div {
+    text-align: center;
+    background-color: rgba(255,255, 255, 0.5);
+}
+.players span { 
+    display: block;
+    mask-image: url(/assets/nounMouse.svg);
+    -webkit-mask-image: url(/assets/nounMouse.svg);
+    min-width: 100px;
+    min-height: 125px;
+
 }
